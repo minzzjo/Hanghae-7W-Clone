@@ -1,30 +1,29 @@
 import axios from "axios"
 import { Cookies } from "react-cookie"
 
+// 인스턴스 3개 나누기 가능
 const cookies = new Cookies()
-
 const noToken = axios.create({
-  // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL,
   withCredentials: true,
 })
 
 const token = axios.create({
-  // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL,
   headers: {
     accept: "application/json",
-    Access_Token: `${cookies.get("Access_Token")}`,
+    Access_Token: `Bearer ${cookies.get("token")}`,
+    "Access-Control-Allow-Origin": "*",
   },
   withCredentials: true,
 })
 
 const file = axios.create({
-  // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL,
   headers: {
     enctype: "multipart/form-data",
-    Access_Token: `${cookies.get("Access_Token")}`,
+
+    Access_Token: `Bearer ${cookies.get("token")}`,
   },
   withCredentials: true,
 })

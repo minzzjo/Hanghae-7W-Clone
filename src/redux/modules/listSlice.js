@@ -1,3 +1,5 @@
+// 첫 화면에 나오는 포스트 목록들의 모듈 (GET)
+
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Apis from "../../shared/Apis";
@@ -64,8 +66,7 @@ export const listSlice = createSlice({
     [__getLikeList.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("action.payload", action.payload)
-      state.list = action.payload.data;
+      state.list = action.payload;
     },
     [__getLikeList.rejected]: (state, action) => {
       state.isLoading = false;
@@ -79,8 +80,7 @@ export const listSlice = createSlice({
     [__getTimeList.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("action.payload", action.payload)
-      state.list = action.payload.data;
+      state.list = action.payload;
     },
     [__getTimeList.rejected]: (state, action) => {
       state.isLoading = false;
@@ -90,4 +90,5 @@ export const listSlice = createSlice({
   },
 })
 
+export const {  } = listSlice.actions;
 export default listSlice.reducer;
